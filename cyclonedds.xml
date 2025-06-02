@@ -11,9 +11,7 @@
         <Discovery>
             <Peers>
                 <!-- These are replaced by entrypoint.sh -->
-                <Peer address="DOCKER_HOSTNAME"/>
                 <Peer address="GAZEBO_CONTAINER"/>
-                <Peer address="SLAM_CONTAINER"/>
             </Peers>
             <MaxAutoParticipantIndex>100</MaxAutoParticipantIndex>
             <ParticipantIndex>auto</ParticipantIndex>

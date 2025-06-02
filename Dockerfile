@@ -22,11 +22,11 @@ WORKDIR ${ROS2_WS}
 
 # ===== Create and build workspace =====
 RUN git clone https://github.com/kailash197/cp23_ros2test_tortoisebot_waypoints.git src/tortoisebot_waypoints
-COPY --chown=${USER_UID}:${USER_GID} ./tortoisebot ${ROS2_WS}/src/tortoisebot
+COPY --chown=${USER_UID}:${USER_GID} ./ros2_ci/cyclonedds.xml /home/${USERNAME}/cyclonedds.xml
 
 # ===== Build =====
 RUN . /opt/ros/galactic/setup.bash \
-    && colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-w" \
+    && colcon build --packages-select tortoisebot_waypoints\
     && source install/setup.bash \
     && echo "source /opt/ros/galactic/setup.bash" >> ~/.bashrc \
     && echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
@@ -35,6 +35,7 @@ RUN . /opt/ros/galactic/setup.bash \
 ENV ROS_DISTRO=galactic
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ENV ROS_DOMAIN_ID=7
+
 
 # ===== Entrypoint =====
 COPY --chown=${USER_UID}:${USER_GID} ./ros2_ci/entrypoint.sh /
