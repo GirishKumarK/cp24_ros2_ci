@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 # Exit on any error
-set -e
+# set -e
 
 # === Install Docker if not installed ===
 if ! command -v docker &> /dev/null; then
